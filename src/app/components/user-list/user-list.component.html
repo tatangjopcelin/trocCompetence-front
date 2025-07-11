@@ -1,0 +1,20 @@
+
+<div *ngIf="loading">Chargement...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<ul *ngIf="!loading && !error">
+  <li *ngFor="let user of users">
+    <h3>{{ user.name }}</h3>
+    <strong>Compétences proposées :</strong>
+    <ul>
+      <li *ngFor="let c of user.proposees">{{ c.name }}</li>
+      <li *ngIf="user.proposees.length === 0">Aucune compétence proposée</li>
+    </ul>
+
+    <strong>Compétences recherchées :</strong>
+    <ul>
+      <li *ngFor="let c of user.recherchees">{{ c.name }}</li>
+      <li *ngIf="user.recherchees.length === 0">Aucune compétence recherchée</li>
+    </ul>
+  </li>
+</ul>
