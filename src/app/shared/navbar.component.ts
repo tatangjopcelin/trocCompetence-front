@@ -3,15 +3,30 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule } from '@angular/forms';
+
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule,
+    FormsModule
+  ],
   template: `
     <nav class="menu">
       <a class="logo" routerLink="/home">
         TrocCompétence
       </a>
+
+      <form class="search-form" (submit)="onSearchSubmit()">
+      <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Rechercher une compétence..." />
+      <select [(ngModel)]="searchType" name="type">
+        <option value="proposee">Proposée</option>
+        <option value="recherchee">Recherchée</option>
+      </select>
+      <button type="submit">🔍</button>
+    </form>
+
       <div class="nav-buttons">
         <ng-container *ngIf="!userIsLoggedIn; else loggedInTemplate">
           <button routerLink="/login" class="btn">Se connecter</button>
@@ -36,6 +51,63 @@ import { CommonModule } from '@angular/common';
       border-radius: 6px;
 
     }
+
+    .search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  input[type="text"],
+  select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: #007bff;
+    }
+  }
+
+  select {
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  button[type="submit"] {
+    padding: 0.6rem 1.2rem;
+    font-size: 1.2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    input,
+    select,
+    button {
+      width: 100%;
+    }
+  }
+}
+
 
     .logo {
       font-size: 1.5rem;
@@ -80,6 +152,22 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
   userIsLoggedIn = false;
+  searchTerm: string = '';
+  searchType: string = 'proposee'; // Valeur par défaut
+  
+  onSearchSubmit(): void {
+    if (!this.searchTerm.trim()) return;
+  
+    this.router.navigate(['/recherche'], {
+      queryParams: {
+        competence: this.searchTerm,
+        type: this.searchType
+      }
+    });
+    this.searchTerm = ''; 
+    this.searchType = 'proposee'; 
+  }
+  
 
   constructor(public auth: AuthService, private router: Router) {}
 

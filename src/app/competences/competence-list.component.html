@@ -1,1 +1,35 @@
-<p>competence-list works!</p>
+<div class="container">
+    <h2>Liste des compétences</h2>
+
+    <button class="btn-manage" (click)="goToManage()">créer proposition / rechercher compétences</button>
+
+    <p *ngIf="success" class="success">{{ success }}</p>
+    <p *ngIf="error" class="error">{{ error }}</p>
+
+    <ul>
+      <li *ngFor="let c of competences" class="competence-item">
+
+        
+        
+
+
+        <input [(ngModel)]="c.name"
+               [readonly]="editingId !== c.id"
+               [class.invalid]="editingId === c.id && !c.name.trim()" />
+
+        <ng-container *ngIf="c.user_id === currentUserId">
+          <ng-container *ngIf="editingId !== c.id">
+            <button (click)="startEditing(c)" class="btn-update">Modifier</button>
+          </ng-container>
+
+          <ng-container *ngIf="editingId === c.id">
+            <button (click)="updateCompetence(c)" class="btn-save">Enregistrer</button>
+            <button (click)="cancelEditing(c)" class="btn-cancel">Annuler</button>
+          </ng-container>
+
+          <button (click)="deleteCompetence(c.id)" class="btn-delete">Supprimer</button>
+        </ng-container>
+
+      </li>
+    </ul>
+  </div>

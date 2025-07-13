@@ -30,13 +30,15 @@ import { CommonModule } from '@angular/common';
       background-color: rgb(248, 203, 4);
     }
     .input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+  width: 93%;            /* largeur limitée (ex. : 60% du parent) */
+  padding: 12px;
+  margin: 0 auto 15px;   /* centré horizontalement + marge bas */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  display: block;        
+}
+
     .btn {
       width: 100%;
       padding: 12px;

@@ -1,10 +1,7 @@
-
-<div *ngIf="loading">Chargement...</div>
-<div *ngIf="error">{{ error }}</div>
-
 <ul *ngIf="!loading && !error">
   <li *ngFor="let user of users">
     <h3>{{ user.name }}</h3>
+    
     <strong>Compétences proposées :</strong>
     <ul>
       <li *ngFor="let c of user.proposees">{{ c.name }}</li>
@@ -16,5 +13,11 @@
       <li *ngFor="let c of user.recherchees">{{ c.name }}</li>
       <li *ngIf="user.recherchees.length === 0">Aucune compétence recherchée</li>
     </ul>
+
+    <!-- ✅ Bouton de demande d’échange -->
+    <button class="btn-contacter" (click)="demanderEchange(user.id)">Contacter</button>
+
+    <!-- ✅ Message de confirmation ou d'erreur -->
+    <p *ngIf="messageMap[user.id]" style="color: green;">{{ messageMap[user.id] }}</p>
   </li>
 </ul>

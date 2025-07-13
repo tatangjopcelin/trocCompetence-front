@@ -24,8 +24,10 @@ import { AuthService } from '../../services/auth.service';
 
         <div class="card">
           <h2>Mes compétences</h2>
+          <div class="button-group">
           <button routerLink="/mes-competences">Voir / Gérer mes compétences</button>
           <button routerLink="/ajouter-competence">Ajouter une compétence</button>
+          </div>
         </div>
 
         <div class="card">
@@ -49,6 +51,26 @@ import { AuthService } from '../../services/auth.service';
     </div>
   `,
   styles: [`
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    @media (min-width: 500px) {
+      .button-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: start;
+      }
+    }
+
+    .button-group button {
+      flex: 1;
+    }
+
     .dashboard {
       padding: 30px;
       max-width: 1200px;

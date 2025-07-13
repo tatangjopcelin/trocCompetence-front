@@ -1,0 +1,33 @@
+<h2>Compétences recherchées</h2>
+<ul>
+  <li *ngFor="let comp of proposees">
+    {{ comp.name }}
+    <button (click)="updateType(comp.id, 'recherchee')">→ Rechercher</button>
+    <button (click)="deleteCompetence(comp.id)">🗑️</button>
+  </li>
+</ul>
+
+<h2>Compétences proposées</h2>
+<ul>
+  <li *ngFor="let comp of recherchees">
+    {{ comp.name }}
+    <button (click)="updateType(comp.id, 'proposee')">→ Proposer</button>
+    <button (click)="deleteCompetence(comp.id)">🗑️</button>
+  </li>
+</ul>
+
+<h3>Ajouter une compétence</h3>
+
+<select [(ngModel)]="selectedCompetenceId">
+  <option [value]="0">-- Choisir une compétence --</option>
+  <option *ngFor="let comp of allCompetences" [value]="comp.id">
+    {{ comp.name }}
+  </option>
+</select>
+
+<select [(ngModel)]="selectedType">
+  <option value="recherchee">Proposée</option>
+  <option value="proposee">Recherchée </option>
+</select>
+
+<button (click)="addCompetence()">Ajouter</button>

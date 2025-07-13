@@ -1,0 +1,55 @@
+<div class="container">
+    <h2>Mes échanges</h2>
+  
+    <!-- 🔄 Chargement -->
+    <div *ngIf="loading">Chargement des échanges...</div>
+  
+    <!-- ⚠️ Erreur -->
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+    <!-- ✅ Liste des échanges -->
+    <div *ngIf="!loading && exchanges.length > 0">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Utilisateur concerné</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of exchanges">
+            <td>{{ e.id }}</td>
+            <td>{{ e.user2?.name || 'Inconnu' }}</td>
+            <td>{{ e.status }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="viewExchangeDetails(e.id)">Voir</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteExchange(e.id)">Supprimer</button>
+              <button *ngIf="e.status === 'en attente'" class="btn btn-success btn-sm" (click)="updateStatus(e.id, 'accepté')">Accepter</button>
+              <button *ngIf="e.status === 'accepté'" class="btn btn-secondary btn-sm" (click)="updateStatus(e.id, 'terminé')">Terminer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- 🚫 Aucun échange -->
+    <div *ngIf="!loading && exchanges.length === 0">
+      <p>Aucun échange trouvé.</p>
+    </div>
+  
+    <!-- 📄 Détails d’un échange sélectionné -->
+    <div *ngIf="selectedExchange" class="card mt-4">
+      <div class="card-header">
+        <strong>Détails de l’échange #{{ selectedExchange.id }}</strong>
+        <button class="btn btn-sm btn-outline-secondary float-end" (click)="closeDetails()">Fermer</button>
+      </div>
+      <div class="card-body">
+        <p><strong>Statut :</strong> {{ selectedExchange.status }}</p>
+        <p><strong>Utilisateur initiateur :</strong> {{ selectedExchange.user1?.name || 'Inconnu' }}</p>
+        <p><strong>Utilisateur invité :</strong> {{ selectedExchange.user2?.name || 'Inconnu' }}</p>
+      </div>
+    </div>
+  </div>
+  

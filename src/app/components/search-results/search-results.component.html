@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <h2>Résultats de recherche</h2>
+  
+    <div *ngIf="loading">Recherche en cours...</div>
+  
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+    <div *ngIf="!loading && results.length > 0">
+      <div *ngFor="let user of results" class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.name }}</h5>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!loading && results.length === 0">
+      <p>Aucun utilisateur trouvé avec cette compétence.</p>
+    </div>
+  </div>
+  

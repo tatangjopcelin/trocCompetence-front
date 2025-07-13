@@ -40,10 +40,11 @@ ul {
   }
   
   li ul li {
-    font-weight: 400;
-    font-size: 1rem;
-    color: #444;
-    margin-bottom: 4px;
+    margin-bottom: 0;
+    font-style: italic;
+    color: #0f018d;
+    font-weight: bold;
+    font-size: 1.5rem;
   }
   
   li ul li:last-child {
@@ -51,6 +52,23 @@ ul {
     font-style: italic;
     color: #0f018d;
     font-weight: bold;
-    font-size: 2.1rem;
+    font-size: 1.5rem;
+  }
+  
+  .btn-contacter {
+    background-color: #28a745;         /* Vert */
+    color: white;                      /* Texte blanc */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;                      /* Pousse à droite */
+    margin-top: -210px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-contacter:hover {
+    background-color: #218838;         /* Vert plus foncé au survol */
   }
   

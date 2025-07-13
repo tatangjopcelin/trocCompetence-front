@@ -47,7 +47,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .input {
-      width: 100%;
+      width: 93%;
       padding: 12px;
       margin-bottom: 15px;
       border: 1px solid #d1d5db;
@@ -55,6 +55,7 @@ import { CommonModule } from '@angular/common';
       font-size: 16px;
       outline: none;
       transition: border-color 0.2s;
+      
     }
 
     .input:focus {

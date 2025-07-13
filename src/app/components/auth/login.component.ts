@@ -123,7 +123,7 @@ export class LoginComponent {
       this.auth.login(credentials).subscribe({
         next: (res) => {
           localStorage.setItem('token', res.access_token);
-          this.router.navigate(['/home']); // Rediriger vers la page d'accueil
+          this.router.navigate(['/dashboard']); // Rediriger vers la page d'accueil
         },
         error: (err) => {
           this.errorMessage = err.error?.message || 'Email ou mot de passe incorrect';
