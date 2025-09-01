@@ -1,0 +1,57 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Mes groupes</h2>
+
+  <div class="button-container mb-4">
+    <button
+      routerLink="/group/create"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+    >
+      ➕ Créer un groupe
+    </button>
+  </div>
+
+  <div *ngIf="loading">Chargement...</div>
+
+  <div *ngIf="error" class="text-red-500 mb-4">
+    {{ error }}
+  </div>
+
+  <ul *ngIf="!loading && groups.length > 0">
+    <li
+      *ngFor="let group of groups"
+      class="mb-2 p-3 border border-gray-300 rounded shadow bg-white flex justify-between items-center"
+    >
+      <span class="font-medium text-gray-800">{{ group.name }}</span>
+      <div class="flex gap-4">
+        <div class="action-buttons">
+          <a [routerLink]="['/group', group.id]" class="open-link">
+            Ouvrir
+          </a>
+        
+          <a
+            *ngIf="group.user_id === currentUserId"
+            [routerLink]="['/group/manage', group.id]"
+            class="manage-link"
+          >
+            Gérer les membres
+          </a>
+        
+          <button
+            *ngIf="group.user_id !== currentUserId"
+            (click)="quitGroup(group.id)"
+            class="quit-btn"
+          >
+            Quitter le groupe
+          </button>
+        </div>
+        
+
+
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="!loading && groups.length === 0" class="text-gray-500">
+    Vous n'êtes membre d'aucun groupe pour le moment.
+  </div>
+</div>

@@ -1,0 +1,98 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.message-wrapper {
+  display: flex;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 0.8em 1em;
+  margin: 0.5em 0;
+  border-radius: 1em;
+  word-wrap: break-word;
+}
+
+.message-sent {
+  background-color: #d1e7dd;
+  align-self: flex-end;
+  margin-left: auto;
+  text-align: right;
+}
+
+.message-received {
+  background-color: #f8d7da;
+  align-self: flex-start;
+  margin-right: auto;
+  text-align: left;
+}
+
+.timestamp {
+  display: block;
+  font-size: 0.75em;
+  color: #666;
+  margin-top: 0.3em;
+}
+
+.message-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  input[type='text'] {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  input[type='file'] {
+    flex: 0.8;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.message-textarea {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto; // centre horizontalement
+  display: block;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+

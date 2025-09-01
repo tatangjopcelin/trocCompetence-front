@@ -1,0 +1,15 @@
+<div class="create-group-container p-4">
+  <h2>Créer un nouveau groupe</h2>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <input
+    type="text"
+    [(ngModel)]="groupName"
+    placeholder="Nom du groupe"
+  />
+
+  <button (click)="createGroup()">
+    Créer le groupe
+  </button>
+</div>

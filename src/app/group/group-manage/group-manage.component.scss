@@ -1,0 +1,73 @@
+:host {
+    display: block;
+    padding: 2rem;
+    background-color: #f9fafb;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    li {
+      background-color: #ffffff;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e5e7eb;
+  
+      span {
+        font-weight: 500;
+        color: #374151;
+      }
+  
+      button {
+        margin-left: 0.5rem;
+        padding: 0.4rem 0.75rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+  
+        &[title='Retirer cet utilisateur du groupe'] {
+          background-color: #ef4444; // rouge
+          color: white;
+  
+          &:hover {
+            background-color: #dc2626;
+          }
+        }
+  
+        &[title='Quitter ce groupe'] {
+          background-color: #fbbf24; // jaune
+          color: #1f2937;
+  
+          &:hover {
+            background-color: #f59e0b;
+          }
+        }
+      }
+    }
+  }
+  
+  p {
+    color: #6b7280;
+    font-style: italic;
+    font-size: 1rem;
+    text-align: center;
+  }
+  

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ExchangeService } from '../services/exchange.service';
+import { ChatComponent } from '../components/chat/chat.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-exchanges',
   templateUrl: './exchanges.component.html',
-  imports: [CommonModule],
+  imports: [CommonModule, ChatComponent],
   standalone: true,
   styleUrls: ['./exchanges.component.scss']
 })
@@ -15,6 +16,8 @@ export class ExchangesComponent implements OnInit {
   loading: boolean = false;
   error: string | null = null;
   currentUserId: number | null = null;
+  chatExchangeId: number | null = null;
+
 
   constructor(private exchangeService: ExchangeService) {}
 
@@ -91,4 +94,13 @@ export class ExchangesComponent implements OnInit {
   closeDetails(): void {
     this.selectedExchange = null;
   }
+  openChat(exchangeId: number): void {
+    this.chatExchangeId = exchangeId;
+  } 
+  closeChat(): void {
+    this.chatExchangeId = null;
+  }
+
+  
+  
 }

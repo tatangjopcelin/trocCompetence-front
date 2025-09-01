@@ -1,0 +1,32 @@
+<div *ngIf="group">
+  <h3>Gestion des membres - {{ group.name }}</h3>
+
+  <ul>
+    <li *ngFor="let user of group.users">
+      {{ user.name }}
+
+      <!-- Bouton retirer visible uniquement si créateur et pas soi-même -->
+      <button
+        *ngIf="isCreator() && user.id !== currentUserId"
+        (click)="removeUser(user.id)"
+        title="Retirer cet utilisateur du groupe"
+      >
+        Retirer
+      </button>
+
+      <!-- Bouton quitter visible uniquement pour soi-même -->
+      <button
+        *ngIf="user.id === currentUserId"
+        (click)="quitGroup()"
+        title="Quitter ce groupe"
+      >
+        Quitter le groupe
+      </button>
+    </li>
+  </ul>
+</div>
+
+<!-- Message de chargement ou d'absence de groupe -->
+<div *ngIf="!group">
+  <p>Chargement des membres du groupe...</p>
+</div>

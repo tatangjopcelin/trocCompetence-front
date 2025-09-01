@@ -1,0 +1,82 @@
+<div>
+  <h2 class="text-xl font-semibold mb-4">Discussion du groupe</h2>
+
+  <div class="invite-box">
+    <div class="invite-header">
+      <h3>➕ Inviter un membre</h3>
+      <div class="invite-controls">
+        <select [(ngModel)]="selectedUserId" class="invite-select">
+          <option [ngValue]="null">-- Choisir un utilisateur --</option>
+          <option *ngFor="let user of allUsers" [ngValue]="user.id">{{ user.name }}</option>
+        </select>
+        <button (click)="inviteUser()" class="invite-btn">Inviter</button>
+      </div>
+    </div>
+  
+    <div *ngIf="inviteMessage" class="text-green-600 mt-2">
+      {{ inviteMessage }}
+    </div>
+  </div>
+  
+
+
+  <!-- ⚠️ Affichage erreurs et chargement -->
+  <div *ngIf="error" class="text-red-600 mt-2">{{ error }}</div>
+  <div *ngIf="loading" class="mt-2">Chargement des messages...</div>
+
+  <!-- 💬 Liste des messages -->
+  <div class="message-list mt-6 space-y-4">
+    <div
+      *ngFor="let msg of messages"
+      [ngClass]="{
+        'my-message text-right ml-auto bg-blue-100': msg.user.id === +currentUserId,
+        'other-message text-left mr-auto bg-gray-100': msg.user.id !== +currentUserId
+      }"
+      class="message p-3 rounded shadow max-w-lg"
+    >
+      <div class="header text-sm text-gray-500">
+        <span class="author font-semibold">{{ msg.user.name }}</span> •
+        <span class="date">{{ formatDate(msg.created_at) }}</span>
+      </div>
+
+      <div class="content my-1 text-base">{{ msg.message }}</div>
+
+      <div *ngIf="msg.attachment" class="attachment mt-2">
+        <img
+          *ngIf="isImage(msg.attachment)"
+          [src]="getFileUrl(msg.attachment)"
+          alt="Pièce jointe"
+          class="max-w-full rounded"
+        />
+        <a
+          *ngIf="!isImage(msg.attachment)"
+          [href]="getFileUrl(msg.attachment)"
+          target="_blank"
+          class="text-blue-600 underline"
+        >
+          Voir la pièce jointe
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✏️ Zone d'envoi de message -->
+  <div class="send-box mt-6">
+    <textarea
+      [(ngModel)]="newMessage"
+      rows="4"
+      placeholder="Écrire un message"
+      class="w-full p-2 border rounded mb-2"
+      style="height: 180px;"
+    ></textarea>
+
+    <input type="file" (change)="onFileSelected($event)" class="mb-2" />
+
+    <button
+      (click)="sendMessage()"
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Envoyer
+    </button>
+  </div>
+</div>

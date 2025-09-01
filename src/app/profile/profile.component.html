@@ -1,0 +1,31 @@
+<div *ngIf="loading">Chargement du profil...</div>
+
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<div *ngIf="user && !loading" class="profile-container">
+  <h2>Mon Profil</h2>
+  <p><strong>Nom :</strong> {{ user.name }}</p>
+  <p><strong>Email :</strong> {{ user.email }}</p>
+  <p><strong>Rôle :</strong> {{ user.role }}</p>
+
+  <div class="pass"><a routerLink="/forgot-password">Reset-password ?</a></div>
+  <div class="espace">
+   <!-- 🔹 Bouton vers la page d’édition -->
+   <button class="btn btn-primary" [routerLink]="['/edit-profile']">
+    Modifier mon profil
+  </button>
+
+   <!-- 🔹 Bouton vers la page de liste des utilisateurs (visible uniquement pour admin) -->
+   <button 
+   class="btn btn-primary" 
+   *ngIf="user.role === 'admin'" 
+   routerLink="/Allusers">
+   Gestion des utilisateurs
+ </button>
+ </div>
+
+</div>
+
+

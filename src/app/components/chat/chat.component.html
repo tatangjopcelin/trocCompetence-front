@@ -1,0 +1,43 @@
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div class="chat-container">
+  <div *ngIf="messages.length === 0 && !loading" class="empty">Aucun message pour l’instant.</div>
+
+  <div *ngFor="let message of messages" class="message-wrapper">
+    <div
+      [ngClass]="{
+        'message-sent': message.user_id === currentUserId,
+        'message-received': message.user_id !== currentUserId
+      }"
+      class="message-bubble"
+    >
+      <div class="content">
+        <p *ngIf="message.content">{{ message.content }}</p>
+        <a
+          *ngIf="message.file_path"
+          [href]="'http://localhost:8000/storage/' + message.file_path"
+          target="_blank"
+        >
+          📎 Fichier joint
+        </a>
+      </div>
+      <span class="timestamp">{{ message.created_at | date: 'short' }}</span>
+    </div>
+  </div>
+</div>
+
+<form (submit)="sendMessage()" class="message-form">
+  <textarea
+  [(ngModel)]="newMessage"
+  name="message"
+  placeholder="Votre message..."
+  rows="3"
+  class="form-control message-textarea"
+></textarea>
+
+  <input type="file" (change)="onFileSelected($event)" />
+  <button type="submit">Envoyer</button>
+</form>
+
+
+

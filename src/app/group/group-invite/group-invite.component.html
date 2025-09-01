@@ -1,0 +1,14 @@
+<div>
+    <label for="userSelect">Inviter un utilisateur :</label>
+    <select id="userSelect" [(ngModel)]="selectedUserId">
+        <option *ngFor="let user of users" [value]="user.id">
+            {{ user.name }} -
+            Compétences proposées : {{ getCompetencesNames(user.proposees) }} |
+            Recherchées : {{ getCompetencesNames(user.recherchees) }}
+          </option>
+          
+    </select>
+  
+    <button (click)="invite()" [disabled]="!selectedUserId">Inviter</button>
+  </div>
+  

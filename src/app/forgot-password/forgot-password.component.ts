@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="container">
       <div class="form-box">
-        <h2>Mot de passe oublié</h2>
+        <h2>Mot de passe oublié/Modification</h2>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <input formControlName="email" placeholder="Adresse email" type="email" class="input" />
           <button type="submit" [disabled]="form.invalid" class="btn">Envoyer le lien</button>

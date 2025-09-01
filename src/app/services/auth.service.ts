@@ -12,7 +12,20 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isLoggedIn = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private currentUserId: number | null = null; // <-- Ajouté ici
+
+  constructor(private http: HttpClient) {
+    if (this.hasToken()) {
+      this.me().subscribe({
+        next: (user: any) => {
+          this.currentUserId = user.id;
+        },
+        error: () => {
+          this.currentUserId = null;
+        }
+      });
+    }
+  }
 
   register(data: {
     name: string;
@@ -29,8 +42,16 @@ export class AuthService {
         next: res => {
           localStorage.setItem('token', res.access_token);
           this.isLoggedInSubject.next(true);
-          observer.next(res);
-          observer.complete();
+          this.me().subscribe({
+            next: (user: any) => {
+              this.currentUserId = user.id;
+              observer.next(res);
+              observer.complete();
+            },
+            error: err => {
+              observer.error(err);
+            }
+          });
         },
         error: err => {
           observer.error(err);
@@ -49,6 +70,7 @@ export class AuthService {
         next: res => {
           this.clearToken();
           this.isLoggedInSubject.next(false);
+          this.currentUserId = null;  // <-- Reset user id on logout
           observer.next(res);
           observer.complete();
         },
@@ -67,12 +89,16 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-  // ✅ Nouvelle méthode : récupérer les infos de l'utilisateur connecté
+  // Récupérer les infos utilisateur courants
   me(): Observable<any> {
     return this.http.get(`${this.apiUrl}/me`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     });
+  }
+
+  getCurrentUserId(): number | null {
+    return this.currentUserId;
   }
 }

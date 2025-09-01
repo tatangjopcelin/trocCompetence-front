@@ -1,0 +1,100 @@
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  
+    h2 {
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+  
+    p {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+  
+    strong {
+      color: #34495e;
+    }
+  
+    .error {
+      color: red;
+      margin-top: 1rem;
+    }
+  }
+  
+  .pass {
+    margin-top: 1rem;
+    text-align: right;
+  
+    a {
+      color: #007bff;  // bleu classique lien
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+  
+      &:hover,
+      &:focus {
+        color: #0056b3;  // bleu plus foncé au survol
+        text-decoration: none;
+        outline: none;
+      }
+    }
+  }
+  
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    &.btn-primary {
+      background-color: #4f46e5; // violet doux
+      color: #fff;
+  
+      &:hover {
+        background-color: #4338ca; // violet plus foncé au survol
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+  
+      &:active {
+        background-color: #3730a3;
+        transform: translateY(0);
+        box-shadow: none;
+      }
+  
+      &:disabled {
+        background-color: #a5b4fc;
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+    }
+  }
+  
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh; // ou 100vh si tu veux occuper toute la page
+    padding: 20px;
+  }
+  
+  .espace {
+    margin-top: auto; // pousse les boutons vers le bas
+    display: flex;
+    gap: 190px; // espace entre les boutons
+  }
+  
+  
+  

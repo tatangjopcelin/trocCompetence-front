@@ -126,3 +126,40 @@
     margin: 10px 0;
   }
   
+
+  // Style pour le bouton "Envoyer un message"
+.btn-info.btn-sm {
+  background-color: #0d6efd; // Bleu plus vif
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0b5ed7;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+}
+
+.btn-sms {
+  background-color: #e2a010; // gris clair
+  color: #212529;            // texte foncé
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  &:hover {
+    background-color: #ced4da; // plus foncé au hover
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+  }
+}

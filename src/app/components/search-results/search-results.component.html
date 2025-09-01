@@ -9,6 +9,20 @@
       <div *ngFor="let user of results" class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">{{ user.name }}</h5>
+  
+          <div *ngIf="user.competences && user.competences.length > 0">
+            <p *ngFor="let comp of user.competences">
+              • {{ comp.nom }} ({{ comp.type === 'proposee' ? 'Proposée' : 'Recherchée' }})
+            </p>
+          </div>
+  
+          <!-- ✅ Bouton Contacter -->
+          <button class="btn btn-primary" (click)="demanderEchange(user.id)">Contacter</button>
+  
+          <!-- ✅ Message de réponse -->
+          <p *ngIf="messageMap[user.id]" class="mt-2 text-success">
+            {{ messageMap[user.id] }}
+          </p>
         </div>
       </div>
     </div>

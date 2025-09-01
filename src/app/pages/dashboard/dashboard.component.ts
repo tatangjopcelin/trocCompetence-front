@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
       <div class="card-grid">
         <div class="card">
           <h2> Mon profil</h2>
-          <button routerLink="/profil"> Modifier mon profil</button>
+          <button routerLink="/profile"> Modifier mon profil</button>
         </div>
 
         <div class="card">
@@ -46,7 +46,7 @@ import { AuthService } from '../../services/auth.service';
         </div>
         <div class="card">
           <h2>Mes Disponibilites</h2>
-          <button routerLink="/disponibilites">Voir mes Disponibilites</button>
+          <button routerLink="/availabilities">Voir mes Disponibilites</button>
       </div>
     </div>
   `,

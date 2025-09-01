@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>📅 Gestion des disponibilités</h2>
+  
+    <!-- Formulaire d’ajout -->
+    <form (ngSubmit)="addAvailability()" class="form">
+      <label>Date :</label>
+      <input type="date" [(ngModel)]="newAvailability.date" name="date" required>
+  
+      <label>Heure de début :</label>
+      <input type="time" [(ngModel)]="newAvailability.start_time" name="start_time" required>
+  
+      <label>Heure de fin :</label>
+      <input type="time" [(ngModel)]="newAvailability.end_time" name="end_time" required>
+  
+      <button type="submit">Ajouter</button>
+    </form>
+    <p *ngIf="errorMessage" style="color: red; margin-top: 5px;">
+      {{ errorMessage }}
+    </p>
+  
+    <hr>
+  
+    <!-- Liste des disponibilités -->
+    <ul>
+      <li *ngFor="let a of availabilities">
+        <!-- Affichage normal -->
+        <div *ngIf="editingAvailabilityId !== a.id">
+          <strong>{{ a.user_name }}</strong> :
+          {{ a.date }} de {{ a.start_time }} à {{ a.end_time }}
+          <button (click)="startEdit(a)">✏️ Modifier</button>
+          <button (click)="deleteAvailability(a.id)">❌ Supprimer</button>
+        </div>
+  
+        <!-- Edition inline -->
+        <div *ngIf="editingAvailabilityId === a.id">
+          <input type="date" [(ngModel)]="editAvailabilityData.date" name="edit_date_{{a.id}}" required>
+          <input type="time" [(ngModel)]="editAvailabilityData.start_time" name="edit_start_time_{{a.id}}" required>
+          <input type="time" [(ngModel)]="editAvailabilityData.end_time" name="edit_end_time_{{a.id}}" required>
+          <button (click)="saveEdit()">💾 Sauvegarder</button>
+          <button (click)="cancelEdit()">❌ Annuler</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

@@ -153,7 +153,7 @@ import { FormsModule } from '@angular/forms';
 export class NavbarComponent implements OnInit {
   userIsLoggedIn = false;
   searchTerm: string = '';
-  searchType: string = 'proposee'; // Valeur par défaut
+  searchType: string = 'proposee'; 
   
   onSearchSubmit(): void {
     if (!this.searchTerm.trim()) return;

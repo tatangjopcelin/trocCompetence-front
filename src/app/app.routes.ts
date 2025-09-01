@@ -9,7 +9,7 @@ import { CompetenceListComponent } from './competences/competence-list.component
 import { UserCompetencesComponent } from './features/competence/user-competences/user-competences.component';
 import { ExchangesComponent } from './exchanges/exchanges.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-
+import { AvailabilityComponent } from './components/availability/availability.component';
 
 export const routes: Routes = [
   {
@@ -46,7 +46,57 @@ export const routes: Routes = [
   },
   { path: 'pro-rechcompetences', component: UserCompetencesComponent },
   { path: 'mes-echanges', component: ExchangesComponent },
-  { path: 'recherche', component: SearchResultsComponent }
+  { path: 'recherche', component: SearchResultsComponent },
+  {
+    path: 'echange/:id/messages',
+    loadComponent: () => import('./components/chat/chat.component').then(m => m.ChatComponent),
+  },
+
+  {
+    path: 'group/create',
+    loadComponent: () => import('./group/group-create/group-create.component').then(m => m.GroupCreateComponent)
+  },
+  {
+    path: 'groupes',
+    loadComponent: () => import('./group/group-list/group-list.component').then(m => m.GroupListComponent)
+  },
+  {
+    path: 'group/:id',
+    loadComponent: () => import('./group/group-chat/group-chat.component').then(m => m.GroupChatComponent)
+  },
+  {
+    path: 'group/manage/:groupId',
+    loadComponent: () => import('./group/group-manage/group-manage.component').then(m => m.GroupManageComponent)
+  },
+  {
+    path: 'group/manage/:id',
+    loadComponent: () =>
+      import('./group/group-manage/group-manage.component').then(m => m.GroupManageComponent)
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./profile/profile.component').then(m => m.ProfileComponent)
+  },
+
+  {
+    path: 'edit-profile',
+    loadComponent: () =>
+      import('./profile/edit-profile/edit-profile.component').then(m => m.EditProfileComponent)
+  },
+
+  {
+    path: 'availabilities',
+    component: AvailabilityComponent
+  }
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

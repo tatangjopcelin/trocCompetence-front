@@ -1,0 +1,133 @@
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f8f3e6;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #004aad;
+  }
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+
+    label {
+      flex-basis: 100%;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input {
+      flex: 1 1 30%;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      flex: 1 1 100%;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #004aad;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #00307a;
+      }
+    }
+  }
+
+  hr {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      strong {
+        color: #004aad;
+        margin-right: 10px;
+      }
+
+      input {
+        margin-right: 8px;
+        padding: 5px 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        margin-left: 5px;
+        padding: 5px 50px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.2s;
+
+        &:nth-child(1) {
+          background-color: #ffc107;
+          color: #fff;
+        }
+
+        &:nth-child(2) {
+          background-color: #4035dc;
+          color: #fff;
+        }
+
+        &:nth-child(1):hover {
+          background-color: #e0a800;
+        }
+
+        &:nth-child(2):hover {
+          background-color: #c82333;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form input {
+      flex: 1 1 100%;
+    }
+
+    ul li {
+      flex-direction: column;
+      align-items: flex-start;
+
+      button {
+        margin-top: 5px;
+        margin-left: 0;
+      }
+    }
+  }
+}
