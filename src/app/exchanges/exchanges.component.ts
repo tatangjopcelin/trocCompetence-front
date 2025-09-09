@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ExchangeService } from '../services/exchange.service';
 import { ChatComponent } from '../components/chat/chat.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-exchanges',
   templateUrl: './exchanges.component.html',
-  imports: [CommonModule, ChatComponent],
+  imports: [CommonModule, ChatComponent, RouterModule],
   standalone: true,
   styleUrls: ['./exchanges.component.scss']
 })

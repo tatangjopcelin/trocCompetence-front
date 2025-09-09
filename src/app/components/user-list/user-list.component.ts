@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';  
 import { UserService, UserWithCompetences, UserProfile } from '../../services/user.service';
 import { ExchangeService } from '../../services/exchange.service';
 import { AvailabilityService, Availability } from '../../services/availability.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -47,7 +46,7 @@ export class UserListComponent implements OnInit {
       error: () => {
         this.error = 'Erreur lors du chargement des utilisateurs.';
         this.loading = false;
-      },
+      }
     });
   }
 
@@ -64,12 +63,18 @@ export class UserListComponent implements OnInit {
 
   demanderEchange(user2Id: number) {
     this.exchangeService.createExchange(user2Id).subscribe({
-      next: () => this.messageMap[user2Id] = '✅ Demande envoyée avec succès.',
-      error: (err) => {
-        if (err.status === 409) this.messageMap[user2Id] = '⚠️ Un échange existe déjà avec cet utilisateur.';
-        else if (err.status === 422) this.messageMap[user2Id] = '❌ Vous ne pouvez pas contacter vous-même.';
-        else this.messageMap[user2Id] = '❌ Erreur lors de l’envoi de la demande.';
+      next: () => {
+        this.messageMap[user2Id] = '✅ Demande envoyée avec succès.';
       },
+      error: (err) => {
+        if (err.status === 409) {
+          this.messageMap[user2Id] = '⚠️ Un échange existe déjà avec cet utilisateur.';
+        } else if (err.status === 422) {
+          this.messageMap[user2Id] = '❌ Vous ne pouvez pas contacter vous-même.';
+        } else {
+          this.messageMap[user2Id] = '❌ Erreur lors de l’envoi de la demande.';
+        }
+      }
     });
   }
 

@@ -1,0 +1,108 @@
+<div class="cv-form-container">
+  <h2 class="cv-title">Mon CV</h2>
+
+  <!-- Informations principales -->
+  <div class="cv-section">
+    <div class="form-group">
+      <label>Titre :</label>
+      <input class="form-control" [(ngModel)]="cv.titre" placeholder="Ex: Développeur Angular" />
+    </div>
+
+    <div class="form-group">
+      <label>Profil :</label>
+      <textarea class="form-control" [(ngModel)]="cv.profil"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Langues :</label>
+      <input class="form-control" [(ngModel)]="cv.langues" />
+    </div>
+
+    <div class="form-group">
+      <label>Permis de conduire :</label>
+      <input class="form-control" [(ngModel)]="cv.permis_conduire" />
+    </div>
+  </div>
+
+  <!-- Expériences -->
+  <div class="cv-section">
+    <h3>Expériences</h3>
+    <div *ngFor="let exp of cv.experiences; let i = index" class="cv-item">
+      <input class="form-control" [(ngModel)]="exp.poste" placeholder="Poste" />
+      <input class="form-control" [(ngModel)]="exp.entreprise" placeholder="Entreprise" />
+      <input class="form-control" [(ngModel)]="exp.debut" placeholder="Début" type="date" />
+      <input class="form-control" [(ngModel)]="exp.fin" placeholder="Fin" type="date" />
+      <textarea class="form-control" [(ngModel)]="exp.description" placeholder="Description"></textarea>
+      <button class="btn btn-danger" (click)="cv.experiences!.splice(i,1)">Supprimer</button>
+    </div>
+    <button class="btn-add" (click)="cv.experiences!.push({poste:'',entreprise:'',debut:''})">+ Ajouter une expérience</button>
+  </div>
+
+  <!-- Formations -->
+  <div class="cv-section">
+    <h3>Formations</h3>
+    <div *ngFor="let f of cv.formations; let i = index" class="cv-item">
+      <input class="form-control" [(ngModel)]="f.diplome" placeholder="Diplôme" />
+      <input class="form-control" [(ngModel)]="f.etablissement" placeholder="Établissement" />
+      <input class="form-control" [(ngModel)]="f.annee" placeholder="Année" type="number" />
+      <button class="btn btn-danger" (click)="cv.formations!.splice(i,1)">Supprimer</button>
+    </div>
+    <button class="btn-add" (click)="cv.formations!.push({diplome:'',etablissement:'',annee:''})">+ Ajouter une formation</button>
+  </div>
+
+  <!-- Compétences -->
+  <div class="cv-section">
+    <h3>Compétences</h3>
+    <div *ngFor="let s of cv.skills; let i = index" class="cv-item">
+      <input class="form-control" [(ngModel)]="s.name" placeholder="Compétence" />
+      <input class="form-control" [(ngModel)]="s.niveau" placeholder="Niveau (Débutant, Avancé...)" />
+      <button class="btn btn-danger" (click)="cv.skills!.splice(i,1)">Supprimer</button>
+    </div>
+    <button class="btn-add" (click)="cv.skills!.push({name:''})">+ Ajouter une compétence</button>
+  </div>
+
+  <!-- Centres d’intérêt -->
+  <div class="cv-section">
+    <h3>Centres d’intérêt</h3>
+    <div *ngFor="let ci of cv.centresInteret; let i = index" class="cv-item">
+      <input class="form-control" [(ngModel)]="ci.name" placeholder="Ex: Sport, Musique..." />
+      <button class="btn btn-danger" (click)="cv.centresInteret!.splice(i,1)">Supprimer</button>
+    </div>
+    <button class="btn-add" (click)="cv.centresInteret!.push({name:''})">+ Ajouter un centre d’intérêt</button>
+  </div>
+
+  <button class="btn-save" (click)="saveCv()">💾 Sauvegarder mon CV</button>
+
+  <p class="message">{{ message }}</p>
+  <button class="btn-download" (click)="downloadCv()">📄 Télécharger mon CV</button>
+
+</div>
+
+<div id="cv-pdf" class="cv-pdf-container" style="display:none;">
+  <h1>{{ cv.titre }}</h1>
+  <p><strong>Profil :</strong> {{ cv.profil }}</p>
+  <p><strong>Langues :</strong> {{ cv.langues }}</p>
+  <p><strong>Permis de conduire :</strong> {{ cv.permis_conduire }}</p>
+
+  <h2>Expériences</h2>
+  <div *ngFor="let exp of cv.experiences">
+    <p><strong>{{ exp.poste }}</strong> chez {{ exp.entreprise }} ({{ exp.debut }} - {{ exp.fin }})</p>
+    <p>{{ exp.description }}</p>
+  </div>
+
+  <h2>Formations</h2>
+  <div *ngFor="let f of cv.formations">
+    <p><strong>{{ f.diplome }}</strong> à {{ f.etablissement }} ({{ f.annee }})</p>
+  </div>
+
+  <h2>Compétences</h2>
+  <ul>
+    <li *ngFor="let s of cv.skills">{{ s.name }} - {{ s.niveau }}</li>
+  </ul>
+
+  <h2>Centres d’intérêt</h2>
+  <ul>
+    <li *ngFor="let ci of cv.centresInteret">{{ ci.name }}</li>
+  </ul>
+</div>
+

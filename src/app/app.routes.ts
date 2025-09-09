@@ -10,6 +10,7 @@ import { UserCompetencesComponent } from './features/competence/user-competences
 import { ExchangesComponent } from './exchanges/exchanges.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AvailabilityComponent } from './components/availability/availability.component';
+import { CvFormComponent } from './components/cv-form/cv-form.component';
 
 export const routes: Routes = [
   {
@@ -88,7 +89,14 @@ export const routes: Routes = [
   {
     path: 'availabilities',
     component: AvailabilityComponent
+  },
+
+  {
+    path: 'cv',
+    component: CvFormComponent
   }
+
+ 
   
   
   

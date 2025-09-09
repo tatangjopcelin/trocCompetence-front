@@ -36,11 +36,6 @@ import { AuthService } from '../../services/auth.service';
         </div>
 
         <div class="card">
-          <h2>Mes badges</h2>
-          <button routerLink="/badges">Voir mes badges</button>
-        </div>
-
-        <div class="card">
           <h2>Mes groupes</h2>
           <button routerLink="/groupes">Accéder à mes groupes</button>
         </div>
